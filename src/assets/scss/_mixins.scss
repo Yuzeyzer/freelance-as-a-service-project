@@ -1,4 +1,4 @@
-@mixin font($size, $weight: 700, $ln-height: 1.5) {
+@mixin font($size, $weight: 700, $ln-height: 2) {
   font-style: normal;
   font-weight: $weight;
   font-size: $size;
@@ -7,8 +7,8 @@
 
 @mixin flex($justify: center, $align: center) {
   display: flex;
-  align-items: $justify;
-  justify-content: $align;
+  align-items: $align;
+  justify-content: $justify;
 }
 @mixin position($type, $top: auto, $right: auto, $bottom: auto, $left: auto) {
   position: absolute;

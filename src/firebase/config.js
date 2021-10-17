@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app'
+import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
 	apiKey: process.env.VUE_APP_API_KEY,
@@ -13,4 +14,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 
-console.log(app)
+export const firestore = getFirestore(app)
+

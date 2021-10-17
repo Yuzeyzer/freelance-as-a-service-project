@@ -2,13 +2,13 @@
 	<div class="project">
 		<div class="project__head">
 			<h3 class="project__title">
-				Prepare Documentation for the Provider's Network
+				{{ project.title }}
 			</h3>
 			<div class="project__widgets">
 				<div class="project__secure">
 					<img :src="shieldIcon" alt="Project is Secure" />
 				</div>
-				<div class="project__budget">$ 30.000</div>
+				<div class="project__budget">$ {{ project.budget }}</div>
 				<div class="project__favorite">
 					<svg
 						width="15"
@@ -48,7 +48,7 @@
 			<div class="project__widgets">
 				<div class="project__date">
 					<img :src="timeIcon" alt="February 20, 12:43" />
-					February 20, 12:43
+					{{ moment(project.createdAt.toDate()).format("MMMM DD, HH:mm ") }}
 				</div>
 				<div class="project__visible">
 					<img :src="visibleIcon" alt="visible for All" />
@@ -56,11 +56,11 @@
 				</div>
 				<div class="project__views">
 					<img :src="viewsIcon" alt="49655 views" />
-					49655
+					{{ project.views }}
 				</div>
 				<div class="project__answers">
 					<img :src="answersIcon" alt="February 20, 12:43" />
-					35 Answers
+					{{ project.views }} Answers
 				</div>
 			</div>
 		</div>
@@ -74,7 +74,13 @@ import timeIcon from "./icons/time.svg";
 import viewsIcon from "./icons/views.svg";
 import visibleIcon from "./icons/visible.svg";
 import answersIcon from "./icons/answers.svg";
+import moment from "moment";
+
 export default {
+	props: ["project"],
+	created: function () {
+		this.moment = moment;
+	},
 	setup() {
 		return {
 			shieldIcon,

@@ -41,23 +41,49 @@
 			</p>
 		</div>
 		<div class="project__footer">
-			<div>
-				<img src="" alt="" />
+			<div class="project__author">
+				<img :src="avatarIcon" alt="Jack Brady" />
 				<span>Jack Brady</span>
 			</div>
-			<div class="project__date">February 20, 12:43</div>
-			<div class="project__visible">For All</div>
-			<div class="project__views">49655</div>
-			<div class="project__answers">35 Answers</div>
+			<div class="project__widgets">
+				<div class="project__date">
+					<img :src="timeIcon" alt="February 20, 12:43" />
+					February 20, 12:43
+				</div>
+				<div class="project__visible">
+					<img :src="visibleIcon" alt="visible for All" />
+					For All
+				</div>
+				<div class="project__views">
+					<img :src="viewsIcon" alt="49655 views" />
+					49655
+				</div>
+				<div class="project__answers">
+					<img :src="answersIcon" alt="February 20, 12:43" />
+					35 Answers
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 import shieldIcon from "./icons/shield.svg";
+import avatarIcon from "./icons/avatar.jpg";
+import timeIcon from "./icons/time.svg";
+import viewsIcon from "./icons/views.svg";
+import visibleIcon from "./icons/visible.svg";
+import answersIcon from "./icons/answers.svg";
 export default {
 	setup() {
-		return { shieldIcon };
+		return {
+			shieldIcon,
+			avatarIcon,
+			timeIcon,
+			viewsIcon,
+			visibleIcon,
+			answersIcon,
+		};
 	},
 };
 </script>
@@ -76,13 +102,9 @@ export default {
 		color: $color-blue-60;
 	}
 	&__head {
-		padding: vw(5) vw(30) vw(35);
 		@include flex(space-between);
+		padding: vw(5) vw(30) vw(35);
 		border-bottom: 2px solid $bg-blue-90;
-	}
-	&__content,
-	&__footer {
-		padding: 0 vw(30);
 	}
 	&__content {
 		@include font(vw(13));
@@ -99,16 +121,59 @@ export default {
 		height: vw(40);
 		border: 2px solid $bg-blue-90;
 		border-radius: 50%;
+		img,
+		svg {
+			display: block;
+			min-width: vw(13);
+			max-width: vw(17);
+		}
 	}
 	&__budget {
+		@include font(vw(12), 800);
 		border: 2px solid $bg-blue-90;
 		border-radius: vw(30);
 		padding: vw(10) vw(20);
 		box-sizing: border-box;
 		margin: 0 vw(10);
-
-		@include font(vw(12), 800);
 		color: $color-blue-70;
+	}
+	&__author {
+		display: flex;
+		align-items: center;
+		img {
+			width: vw(40);
+			height: vw(40);
+			margin-right: vw(20);
+		}
+		span {
+			@include font(vw(12), 800);
+			color: $color-blue-60;
+		}
+	}
+	&__footer {
+		@include flex(space-between);
+		padding: 0 vw(30);
+		.project__widgets {
+			div {
+				@include font(vw(12), 800);
+				display: flex;
+				align-items: center;
+				padding: vw(10) vw(20);
+				background: $bg-blue-90;
+				border-radius: vw(30);
+				color: $color-blue-70;
+				img {
+					margin-right: vw(10);
+					height: vw(16);
+				}
+			}
+		}
+	}
+	&__visible {
+		margin: 0 vw(10);
+	}
+	&__views {
+		margin-right: vw(10);
 	}
 }
 </style>

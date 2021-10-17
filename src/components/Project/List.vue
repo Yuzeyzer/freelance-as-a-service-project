@@ -1,6 +1,10 @@
 <template>
 	<Project />
 	<Project />
+	<Project />
+	<Project />
+	<Project />
+	<Project />
 </template>
 
 <script>

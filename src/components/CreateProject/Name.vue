@@ -1,31 +1,42 @@
 <template>
 	<div class="create-project">
 		<div class="create-project__wrapper p-60">
-			<h3 class="create-project__name">
+			<h3
+				@click="toggleBlock = !toggleBlock"
+				class="create-project__name"
+				:class="{ active: toggleBlock }"
+			>
 				Name of the project
-				<img src="./icons/arrow.svg" alt="" />
+				<img :class="{ active: toggleBlock }" src="./icons/arrow.svg" alt="" />
 			</h3>
-			<form>
-				<label
-					>Write the name of your project. The name should attract attention and
-					reflect the essence of the project.</label
-				>
-				<input type="text" placeholder="Name of the project" required />
-				<span>3/100 Characters (minimum 5)</span>
-			</form>
-			<label class="create-project__label">Some good examples:</label>
-			<div class="create-project__examples">
-				<span>Technical Design</span>
-				<span>We are looking for a Website Promotion Specialist</span>
-				<span>Create 2d Animations</span>
+			<div v-if="toggleBlock">
+				<form>
+					<label
+						>Write the name of your project. The name should attract attention
+						and reflect the essence of the project.</label
+					>
+					<input type="text" placeholder="Name of the project" required />
+					<span>3/100 Characters (minimum 5)</span>
+				</form>
+				<label class="create-project__label">Some good examples:</label>
+				<div class="create-project__examples">
+					<span>Technical Design</span>
+					<span>We are looking for a Website Promotion Specialist</span>
+					<span>Create 2d Animations</span>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import { ref } from "@vue/reactivity";
 export default {
-  
+	setup() {
+		const toggleBlock = ref(false);
+
+		return { toggleBlock };
+	},
 };
 </script>
 
@@ -42,14 +53,21 @@ export default {
 		@include font(vw(16), 700);
 		position: relative;
 		color: $color-blue-50;
-		margin-bottom: vw(30);
+		cursor: pointer;
+		&.active {
+			margin-bottom: vw(30);
+		}
 		img {
 			position: absolute;
 			top: 50%;
 			right: 0;
-      height: vw(6.5);
-      width: vw(11);
-      transform: translateY(-50%)
+			height: vw(6.5);
+			width: vw(11);
+			transform: translateY(-50%) rotate(180deg);
+			transition: 0.3s;
+			&.active {
+				transform: translateY(-50%);
+			}
 		}
 	}
 	form {

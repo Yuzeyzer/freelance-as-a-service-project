@@ -13,7 +13,9 @@ const projects = {
 	actions: {
 		async getProjects({commit}) {
 			const { documents, error } = await getCollection('projects')
-			console.log(error.value)
+			if (error.value) {
+        throw new Error(error.value)
+      }
       commit('GET_PROJECTS',documents)
 		},
 	},
